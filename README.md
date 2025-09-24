@@ -2,10 +2,10 @@
 
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)  
 
+A demonstration project featuring an Advanced Agentic Retrieval-Augmented Generation (RAG) systems built with LangGraph.\
+This project extends the original [Advanced_Agentic_RAG](https://github.com/stefano-chen/Advanced_Agentic_RAG.git) by adding support for custom MCP servers.\
+To run it, you’ll need the custom MCP server provided [here](https://github.com/stefano-chen/MCP_Server_Demo.git).
 
-A demo project showcasing *Advanced Agentic Retrieval-Augmented Generation (RAG)* systems using **LangGraph**.\
-This is a variation of this [project](https://github.com/stefano-chen/Advanced_Agentic_RAG.git) with integration for custom MCP servers\
-To run this project you need to use the custom MCP server available [here](https://github.com/stefano-chen/MCP_Server_Demo.git)
 ---
 
 ## Table of Contents
