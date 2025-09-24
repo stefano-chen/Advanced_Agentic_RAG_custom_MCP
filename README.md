@@ -3,8 +3,9 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)  
 
 
-A demo project showcasing *Advanced Agentic Retrieval-Augmented Generation (RAG)* systems using **LangGraph**.
-
+A demo project showcasing *Advanced Agentic Retrieval-Augmented Generation (RAG)* systems using **LangGraph**.\
+This is a variation of this [project](https://github.com/stefano-chen/Advanced_Agentic_RAG.git) with integration for custom MCP servers\
+To run this project you need to use the custom MCP server available [here](https://github.com/stefano-chen/MCP_Server_Demo.git)
 ---
 
 ## Table of Contents
