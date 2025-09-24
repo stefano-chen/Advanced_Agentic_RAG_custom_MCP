@@ -59,6 +59,7 @@ async def stream_response(agent: CompiledStateGraph[AgentState], user_query: str
     prefix = "\n" if verbosity > 0 else ""
     start = time.time()
 
+    # Using .astream() [and async for loop] because the tools loaded from custom MCP server can only be used asynchronously
     async for event in agent.astream(AgentState.create(messages=[HumanMessage(user_query)], question=user_query, history=chat_history)):
         # An event is generated every time a node is executed 
         # An event is the agent's state after each node execution

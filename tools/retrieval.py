@@ -22,18 +22,22 @@ async def get_tools(vector_store_type: str, vector_store_dir: str, k: int, confi
         List[Tool]: A list of tools for the agent
     """
 
+    # Create MCP clients, one for each MCP server
     client = MultiServerMCPClient({
         "conversion_mcp_http": {
-            "transport": "streamable_http",
+            "transport": "streamable_http", # HTTP-based remote server
             "url": "http://localhost:8080/mcp" # the mcp python package create the route /mcp automatically
         },
         "conversion_mcp_stdio": {
-            "transport": "stdio",
+            "transport": "stdio", # Local subprocess communication
             "command": "python",
-            "args": ["C:/Users/stefano/Desktop/MCP_Demo/mcp_server.py"]
+            "args": ["C:/Users/stefano/Desktop/MCP_Demo/mcp_server_stdio.py"] # Absolute path to your .py file containing the mcp server definition
         },
     })
 
+    # Returns a list of available tools.
+    # Only works in asynchronous code -> I had to change some implementation to make it work (se app.py, utils/processing.py)
+    # client has also methods to fetch Resources and Prompts
     tools = await client.get_tools(server_name="conversion_mcp_stdio") # Optional name of the server to get tools from. If not specified all tools from all servers will be returned
 
     # A web search tool
