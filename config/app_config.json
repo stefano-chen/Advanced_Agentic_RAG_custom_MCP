@@ -1,0 +1,55 @@
+{
+    "verbosity": 2,
+    "db_dir_path": "./store",
+    "vector_db": "faiss",
+    "check_input_validity": true,
+    "check_output_validity": true,
+    "advanced_rag": true,
+    "save_to_png": false,
+    "image_name": "graph_advanced.png",
+    "llm": {
+        "llm_provider": "lm-studio",
+        "llm_model": "google/gemma-2-9b",
+        "llm_host": "http://localhost:9999/v1",
+        "temperature": 0
+    },
+    "embedding": {
+        "embedding_provider": "huggingface",
+        "embedding_model": "sentence-transformers/all-mpnet-base-v2",
+        "embedding_host": ""
+    },
+    "k": 7,
+    "query_transform": "hyde",
+    "query_transform_options": {
+        "step-back": {
+            "max_char": 100
+        },
+        "hyde": {
+            "max_char": 300
+        }
+    },
+    "reranking_strategies": ["semantic", "distance"],
+    "reranking_weights": [0.7, 0.3],
+    "reranking_strategies_options": {
+        "semantic": {
+            "llm_provider": "lm-studio",
+            "llm_model": "google/gemma-2-9b",
+            "llm_host": "http://localhost:9999/v1",
+            "temperature": 0
+        },
+        "distance": {
+            "embedding_provider": "huggingface",
+            "embedding_model": "sentence-transformers/all-mpnet-base-v2",
+            "embedding_host": ""
+        }
+    },
+    "selection_strategies": ["threshold", "topk"],
+    "selection_options": {
+        "threshold":{
+            "min": 0.6
+        },
+        "topk":{
+            "k": 3
+        }
+    }
+}
