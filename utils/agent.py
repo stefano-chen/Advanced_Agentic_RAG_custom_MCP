@@ -2,7 +2,7 @@ from langgraph.graph import StateGraph, START, END
 from langgraph.graph.state import CompiledStateGraph
 from langgraph.prebuilt import ToolNode
 from nodes.query_validation import QueryValidation, is_related
-from nodes.tool_calling import ToolRouting, tool_condition
+from nodes.tool_routing import ToolRouting, tool_condition
 from utils.state import AgentState
 from nodes.query_transformation import QueryTransform
 from utils.processing import get_topics
@@ -13,7 +13,7 @@ from nodes.answer import GenerateAnswer
 from nodes.output_validation import AnswerValidation
 from nodes.reranking import Reranking
 from nodes.selection import ChunckSelection
-from nodes.tool_calling import Choice
+from nodes.retrieve_or_respond import Retrieve_Respond
 from nodes.extract_chunks import extract_chunks
 from nodes.history import HistorySummarizer
 from typing import Dict, Any, Union
@@ -48,7 +48,7 @@ async def build_agent(app_config: Dict[str, Any], prompts: Dict[str, Union[str, 
     
     # Simple RAG Nodes
     graph.add_node("history_integration", HistorySummarizer(llm, prompts["history"]).summarize)
-    graph.add_node("retrieve_or_respond", Choice(llm, prompts["retrieve_respond"]).choose)
+    graph.add_node("retrieve_or_respond", Retrieve_Respond(llm, prompts["retrieve_respond"]).choose)
     graph.add_node("tool_routing", ToolRouting(llm, prompts["tool_calling"], tools).route)
     graph.add_node("tool_execution", ToolNode(tools))
     graph.add_node("extract_chunks", extract_chunks)
